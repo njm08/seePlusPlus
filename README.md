@@ -25,5 +25,9 @@ It is currently only tested on MacOs.
 
 ## Shortcuts
 
-_CMD + Shift + B_ to compile the project in VS-Code
-_CMD + Shift + R_ to run the executable in VS-Code.
+- _CMD + Shift + B_ to compile the project in VS-Code
+- _CMD + Shift + R_ to run the executable in VS-Code
+
+## Style Guide
+
+Use the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html#Self_contained_Headers).
