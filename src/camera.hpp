@@ -4,6 +4,7 @@
 
 //! \brief A class for capturing video from a camera device.
 //! \param cameraIndex The index of the camera device to use (default is 0).
+//! \throws std::runtime_error if the camera cannot be opened.
 class Camera {
 public:
     explicit Camera(const int cameraIndex = 0);

@@ -1,3 +1,7 @@
+# Exports from tool to get the Yolo model
+tools/yolo_export/*.onnx
+tools/yolo_export/*.pt
+
 # MacOS specific ignores
 .DS_Store
 
