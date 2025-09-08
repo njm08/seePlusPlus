@@ -42,6 +42,34 @@
                 "CMake Compile"
             ],
             "problemMatcher": []
+        },
+        {
+            "label": "Docker Build Image",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/; docker buildx build --platform linux/amd64,linux/arm64 -t seeplusplus/cpp-opencv .",
+            "group": {
+                "kind": "build",
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Docker Run Interactive",
+            "type": "shell",
+           "command": "docker run --rm -it ghcr.io/njm08/seeplusplus-opencv:latest",
+            "group": {
+                "kind": "build",
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Docker Push Image",
+            "type": "shell",
+            "command": "echo \"$GITHUB_TOKEN\" | docker login ghcr.io -u njm08 --password-stdin && docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/njm08/seeplusplus-opencv:latest --push .",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "problemMatcher": []
         }
     ],
     "version": "2.0.0"
