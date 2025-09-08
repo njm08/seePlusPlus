@@ -5,6 +5,9 @@ tools/yolo_export/*.pt
 # MacOS specific ignores
 .DS_Store
 
+#Environment
+*.env
+
 # Prerequisites
 *.d
 
