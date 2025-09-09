@@ -3,13 +3,13 @@
 #include <opencv2/highgui.hpp>
 #include <fstream>
 #include <chrono>
-
+#include <filesystem>
 #include "camera.hpp"
 #include "vision_utilities.hpp"
 #include "yolo_detector.hpp"
 
 //*********************. Configuration ********************
-constexpr int CAMERA_INDEX = 0; // Change this to the appropriate camera index if needed.
+constexpr int CAMERA_INDEX = 1; // Change this to the appropriate camera index if needed.
 //*********************************************************
 
 int main() {
@@ -32,7 +32,6 @@ int main() {
   }
 
   // Create the YoloV11 detector with default configuration.
-  // Create the YoloV11 detector with default configuration.
   object_detection::YoloConfig defaultYoloConfig {};
   object_detection::YoloV11 yoloDetector{onnxFilePath, classesFilePath, defaultYoloConfig};
 
@@ -49,7 +48,7 @@ int main() {
   {
     if(!camera.captureFrame(frame)) 
     {
-      std::cout << "Error: Empty frame. Exiting." << std::endl;
+      std::cerr << "Error: Empty frame. Exiting." << std::endl;
       break; // Exit loop if frame is empty
     } 
     else 

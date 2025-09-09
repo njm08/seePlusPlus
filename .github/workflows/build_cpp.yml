@@ -19,8 +19,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
   
-      - name: Configure with CMake
-        run: cmake -S . -B ./build
+      - name: Build Release
+        run: python3 tools/build_scripts/build_local_release.py
 
-      - name: Build
-        run: cmake --build ./build --parallel
+      - name: Build Debug
+        run: python3 tools/build_scripts/build_local_debug.py
