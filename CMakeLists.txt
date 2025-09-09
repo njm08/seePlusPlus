@@ -14,11 +14,18 @@ add_executable(seePlusPlus ${SOURCES})
 
 target_link_libraries(seePlusPlus ${OpenCV_LIBS})
 
-# Debug mode options
-option(DEBUG_MODE "Enable debug mode" ON)
+# Set default build type to Release if not specified
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+endif()
 
-if(DEBUG_MODE)
-    message(STATUS "Debug mode enabled")
+# Set compile options for Debug and Release
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    message(STATUS "Debug build")
     target_compile_definitions(seePlusPlus PRIVATE DEBUG_MODE=1)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0")
+    target_compile_options(seePlusPlus PRIVATE -g -O0)
+elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+    message(STATUS "Release build")
+    target_compile_definitions(seePlusPlus PRIVATE NDEBUG)
+    target_compile_options(seePlusPlus PRIVATE -O3)
 endif()

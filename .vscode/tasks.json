@@ -1,46 +1,38 @@
 {
     "tasks": [
         {
-            "label": "CMake Build Debug",
+            "label": "Build Local Release",
             "type": "shell",
-            "command": "cmake",
+            "command": "python3",
             "args": [
-                "-S",
-                "${workspaceFolder}",
-                "-B",
-                "${workspaceFolder}/build/Debug"
-            ],
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "CMake Compile Debug",
-            "type": "shell",
-            "command": "cmake",
-            "args": [
-                "--build",
-                "${workspaceFolder}/build/Debug"
+                "${workspaceFolder}/tools/build_scripts/build_local_release.py"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "dependsOn": [
-                "CMake Build Debug"
-            ],
             "problemMatcher": []
         },
         {
-            "label": "Run Executable Debug",
+            "label": "Build Local Debug",
             "type": "shell",
-            "command": "${workspaceFolder}/build/Debug/seePlusPlus",
+            "command": "python3",
+            "args": [
+                "${workspaceFolder}/tools/build_scripts/build_local_debug.py"
+            ],
+            "group": {
+                "kind": "build",
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Local Release",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/Local/Release/seePlusPlus",
             "group": {
                 "kind": "test",
                 "isDefault": true
             },
-            "dependsOn": [
-                "CMake Compile"
-            ],
             "problemMatcher": []
         },
         {
