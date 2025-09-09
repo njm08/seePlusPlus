@@ -18,7 +18,9 @@ void cropCentered(cv::Mat& img, const size_t width, const size_t height)
     const int originalHeight = img.rows;
 
     if (width > originalWidth || height > originalHeight) {
-        throw std::invalid_argument("Crop size is larger than the image size.");
+        throw std::invalid_argument("Crop size" + std::to_string(width) + "x" + 
+        std::to_string(height) + " is larger than the image size " + 
+        std::to_string(originalWidth) + "x" + std::to_string(originalHeight));
     }
 
     // Find the top left corner of the cropped image.

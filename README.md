@@ -7,16 +7,22 @@ It is used as an introduction project into machine vision with C++.
 
 - Real-time object detection using YOLOv11 and OpenCV DNN module
 - Visualizes detection results directly on images
-- Build and run with provided docker image
+- Build provided docker image
 - Github Actions for building
 - Cross-platform build support (macOS, Windows, Linux)
 
 ![Yolo Detecting Chairs](res/detect_chairs.png) ![Yolo Detecting Cups](res/detect_cup.png)
 
+## Limitations
+
+- Running application in container on MacOs does not work. The camera cannot be opened in the container.
+- It is possible to get the camera feed from a HTTP or UDP server. However this turned out to be very unstable and has a high latency.
+
 ## Coming Soon
 
 - Static Code Analysis in Github Actions
 - Automated Testing in Github Actions
+- Application running in Docker container on Linux. Should already work but is not yet tested. 
 
 ## Requirements
 
