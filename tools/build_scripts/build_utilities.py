@@ -82,7 +82,7 @@ def run_build(build_command):
         build_command (str): Build command used to build the project.
     """
     print("Running build ...")
-    print(f"Run: {build_command}")
+    print(f"CMD: {build_command}")
     try:
         subprocess.check_call(build_command, shell=True)
         print(f"\n✅ Build finished.")
@@ -102,9 +102,8 @@ def build_project_local(build_target: BuildTarget):
     # Make the build directory.
     create_build_dir(get_root_path(), build_target, build_site)
 
-    # Docker run command. "-v" mounts a volume from the host machine. "-w" sets the working directory.
+    # Run the build locally with CMake.
     build_command = create_cmake_build_command(get_root_path(), build_target, build_site) 
-    # Run the container and build the project.
     run_build(build_command)
 
 def pull_container():
@@ -130,10 +129,8 @@ def build_containerized(build_target: BuildTarget):
     create_build_dir(get_root_path(), build_target, build_site)
 
     docker_workspace_path = "/workspace"
-    build_command = create_cmake_build_command(docker_workspace_path, build_target, build_site) 
+    build_command = create_cmake_build_command(docker_workspace_path, build_target, build_site)
     # Docker run command. "-v" mounts a volume from the host machine. "-w" sets the working directory.
-    docker_cmd = f"ls && docker run --rm -v {get_root_path()}:{docker_workspace_path} -w {docker_workspace_path} seeplusplus/cpp-opencv:latest bash -c '{build_command}'"
-    print(docker_cmd)
-    print(build_command)
+    docker_cmd = f"docker run --rm -v {get_root_path()}:{docker_workspace_path} -w {docker_workspace_path} seeplusplus/cpp-opencv:latest bash -c '{build_command}'"
     # Run the container and build the project.
     run_build(docker_cmd)
