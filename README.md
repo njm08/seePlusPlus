@@ -10,7 +10,7 @@ It is currenty tested on Apple Silicon (M1 Chip) but will soon be running on a N
 - Real-time object detection using YOLOv11 and OpenCV DNN module
 - Visualizes detection results directly on images
 - Docker image for building and running the application
-- Cross-platform build support (macOS, Windows, Linux)
+- Cross-platform build scripts in Python (macOS, Windows, Linux)
 - Automated build on Github Actions
 
 ![Yolo Detecting Chairs](res/detect_chairs.png) ![Yolo Detecting Cups](res/detect_cup.png)
