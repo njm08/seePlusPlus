@@ -9,6 +9,7 @@ from pathlib import Path
 
 from enum import Enum
 
+DOCKER_IMAGE = "ghcr.io/njm08/seeplusplus-opencv:latest"
 class BuildTarget(Enum):
     DEBUG = "Debug"
     RELEASE = "Release"
@@ -16,6 +17,8 @@ class BuildTarget(Enum):
 class BuildSite(Enum):
     LOCAL = "Local"
     CONTAINER = "Container"
+
+print_cmd = lambda cmd: print(f"\033[1;36m$ {cmd}\033[0m")
 
 def get_root_path() -> Path:
     """Get the root path of the project.
@@ -82,7 +85,7 @@ def run_build(build_command):
         build_command (str): Build command used to build the project.
     """
     print("Running build ...")
-    print(f"CMD: {build_command}")
+    print_cmd(build_command)
     try:
         subprocess.check_call(build_command, shell=True)
         print(f"\n✅ Build finished.")
@@ -110,7 +113,7 @@ def pull_container():
     """Pull the container on Github.
     """
     print("Pulling the container...")
-    subprocess.run(["docker", "pull", "ghcr.io/njm08/seeplusplus-opencv:latest"], check=True)
+    subprocess.run(["docker", "pull", DOCKER_IMAGE], check=True)
 
 def build_containerized(build_target: BuildTarget):
     """Build in a container.
@@ -131,6 +134,6 @@ def build_containerized(build_target: BuildTarget):
     docker_workspace_path = "/workspace"
     build_command = create_cmake_build_command(docker_workspace_path, build_target, build_site)
     # Docker run command. "-v" mounts a volume from the host machine. "-w" sets the working directory.
-    docker_cmd = f"docker run --rm -v {get_root_path()}:{docker_workspace_path} -w {docker_workspace_path} seeplusplus/cpp-opencv:latest bash -c '{build_command}'"
+    docker_cmd = f"docker run --rm -v {get_root_path()}:{docker_workspace_path} -w {docker_workspace_path} {DOCKER_IMAGE} bash -c '{build_command}'"
     # Run the container and build the project.
     run_build(docker_cmd)

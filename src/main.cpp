@@ -9,7 +9,7 @@
 #include "yolo_detector.hpp"
 
 //*********************. Configuration ********************
-constexpr int CAMERA_INDEX = 1; // Change this to the appropriate camera index if needed.
+constexpr int CAMERA_INDEX = 0; // Change this to the appropriate camera index if needed.
 //*********************************************************
 
 int main() {
@@ -63,7 +63,7 @@ int main() {
       std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
       auto timeSpanMs = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
       auto frameRateHz = 1000.0 / timeSpanMs.count();
-
+      
       // Draw the detection results and display the frame.
       yoloDetector.drawDetections(frame, detectionResult);
       yoloDetector.drawFPS(frame, frameRateHz);
@@ -74,12 +74,7 @@ int main() {
     int key = cv::waitKey(1);
     if (key == 'q' || key == 'Q' || key == 27) 
     {
-      break;
-    }
-
-    // Exit loop if window is closed
-    if (cv::getWindowProperty(windowName, cv::WND_PROP_VISIBLE) < 1) 
-    {
+      std::cout << "Exit key pressed." << std::endl;
       break;
     }
   }

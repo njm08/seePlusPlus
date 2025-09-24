@@ -36,6 +36,15 @@
             "problemMatcher": []
         },
         {
+            "label": "Run in Container Release",
+            "type": "shell",
+            "command": "docker run --rm -it --device=/dev/video0:/dev/video0 --group-add video -v ${workspaceFolder}:/app ghcr.io/njm08/seeplusplus-opencv:latest /app/build/Container/Release/seePlusPlus",
+            "group": {
+                "kind": "test",
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "Docker Build Image",
             "type": "shell",
             "command": "cd ${workspaceFolder}/; docker buildx build --platform linux/amd64,linux/arm64 -t seeplusplus/cpp-opencv .",

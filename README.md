@@ -1,15 +1,13 @@
 # seePlusPlus
 
 The goal of this application is to implement a real time object detection using __YOLO__.
-The current prototype is in C++, to check out new C++ features and test the C++ integration of OpenCV.
-It is currenty tested on Apple Silicon (M1 Chip) but will soon be running on a NVIDIA Jetson to boost the performance.
-
+The current prototype is in C++, to check out new C++ features, building with Docker and testing the C++ integration of OpenCV.
 
 ## Project Features
 
 - Real-time object detection using YOLOv11 and OpenCV DNN module
 - Visualizes detection results directly on images
-- Docker image for building and running the application
+- Multiple architecture Docker image for building and running the application
 - Cross-platform build scripts in Python (macOS, Windows, Linux)
 - Automated build on Github Actions
 
@@ -17,12 +15,13 @@ It is currenty tested on Apple Silicon (M1 Chip) but will soon be running on a N
 
 ## Limitations
 
-- Running application in container on Docker Desktop with MacOs does not work. The camera cannot be opened in the container.
-- It is possible to get the camera feed from a HTTP or UDP server. However the latency is too high.
+- Running application in container on Docker Desktop with MacOs. The camera cannot be opened in the container. Getting the camera feed from HTTP or UDP server has too latency.
+- Passing display to container not yet tested. Try "-e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix" when starting the container.
+- No GPU support on NVIDIA Jetson. Testing GPU support is done in separate repository with Python and Ultralytics packages.
 
 ## Coming Soon
 
-- Running the application on NVIDIA Jetson for higher performance.
+- Running the application on NVIDIA Jetson on GPUs with TensorRT engine.
 - Static Code Analysis in Github Actions
 - Automated Testing in Github Actions
 
