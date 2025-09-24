@@ -7,7 +7,7 @@
 //! \throws std::runtime_error if the camera cannot be opened.
 class Camera {
 public:
-    explicit Camera(const int cameraIndex = 0);
+    explicit Camera(const int cameraIndex = 0, const int width = 1920, const int height = 1080);
     ~Camera() = default;
     Camera(const Camera&) = delete; // Copying the camera object is not allowed, since it manages a hardware resource.
     Camera& operator=(const Camera&) = delete;
